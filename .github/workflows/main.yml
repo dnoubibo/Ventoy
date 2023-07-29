@@ -1,1 +1,19 @@
+name: Guet release artefacts
 
+on:
+  push:
+     branches: ["main"]
+  
+  pull_request:
+     branches: ["main"]
+
+jobs:
+  release_download:
+     runs-on: ubuntu-latest
+
+     steps:
+        - uses: actions/checkout@v3
+        - name: List of release
+          run: gh release list --repo Vaillant-NEEXT/plsw-linux-image-base
+          env:
+             GITHUB_TOKEN: ${{ github.token }}
